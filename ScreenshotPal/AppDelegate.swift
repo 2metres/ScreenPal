@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSPopoverDelegate {
 
         let menu = NSMenu()
         menu.addItem(NSMenuItem(
-            title: "Quit ScreenPal",
+            title: "Quit ScreenshotPal",
             action: #selector(NSApplication.terminate(_:)),
             keyEquivalent: "q"
         ))

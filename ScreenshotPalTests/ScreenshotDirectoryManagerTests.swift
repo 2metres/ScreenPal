@@ -1,5 +1,5 @@
 import XCTest
-@testable import ScreenPal
+@testable import ScreenshotPal
 
 final class ScreenshotDirectoryManagerTests: XCTestCase {
     private let customPathKey = "customScreenshotDirectory"

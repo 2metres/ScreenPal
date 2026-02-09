@@ -19,27 +19,27 @@ jobs:
       - name: Build Release
         run: |
           xcodebuild build \
-            -project ScreenPal.xcodeproj \
-            -scheme ScreenPal \
+            -project ScreenshotPal.xcodeproj \
+            -scheme ScreenshotPal \
             -configuration Release \
             -derivedDataPath build
       - name: Run Tests
         run: |
           xcodebuild test \
-            -project ScreenPal.xcodeproj \
-            -scheme ScreenPalTests \
+            -project ScreenshotPal.xcodeproj \
+            -scheme ScreenshotPalTests \
             -configuration Debug \
             -destination 'platform=macOS'
       - name: Create DMG
         run: |
-          APP_PATH="build/Build/Products/Release/ScreenPal.app"
-          DMG_NAME="ScreenPal-${GITHUB_REF_NAME}.dmg"
+          APP_PATH="build/Build/Products/Release/ScreenshotPal.app"
+          DMG_NAME="ScreenshotPal-${GITHUB_REF_NAME}.dmg"
 
           mkdir -p dmg_staging
           cp -R "$APP_PATH" dmg_staging/
           ln -s /Applications dmg_staging/Applications
 
-          hdiutil create -volname "ScreenPal" \
+          hdiutil create -volname "ScreenshotPal" \
             -srcfolder dmg_staging \
             -ov -format UDZO \
             "$DMG_NAME"
