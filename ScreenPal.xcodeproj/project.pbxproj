@@ -149,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A70000030000000000000003 /* Build configuration list for PBXNativeTarget "ScreenPal" */;
 			buildPhases = (
+				C20000010000000000000001 /* SwiftFormat */,
 				A60000010000000000000001 /* Sources */,
 				A30000010000000000000001 /* Frameworks */,
 				A60000020000000000000002 /* Resources */,
+				C20000020000000000000002 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -228,6 +230,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C20000010000000000000001 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if command -v swiftformat &>/dev/null; then\n    swiftformat \"$SRCROOT/ScreenPal\" \"$SRCROOT/ScreenPalTests\"\nelse\n    echo \"warning: SwiftFormat not found — install with 'brew install swiftformat'\"\nfi\n";
+		};
+		C20000020000000000000002 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if command -v swiftlint &>/dev/null; then\n    swiftlint lint --quiet\nelse\n    echo \"warning: SwiftLint not found — install with 'brew install swiftlint'\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A60000010000000000000001 /* Sources */ = {
@@ -394,6 +437,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScreenPal/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -421,6 +465,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ScreenPal/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
