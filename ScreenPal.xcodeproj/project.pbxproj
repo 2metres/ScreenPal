@@ -15,6 +15,7 @@
 		A10000060000000000000006 /* ScreenshotGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000060000000000000006 /* ScreenshotGrid.swift */; };
 		A10000070000000000000007 /* ScreenshotThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000070000000000000007 /* ScreenshotThumbnail.swift */; };
 		A10000080000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000080000000000000008 /* Assets.xcassets */; };
+		A100000B000000000000000B /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000D /* AppIcon.png */; };
 		A10000090000000000000009 /* ScreenshotDirectoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000B /* ScreenshotDirectoryManager.swift */; };
 		A100000A000000000000000A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000000000000000000000C /* SettingsView.swift */; };
 		B10000010000000000000001 /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000010000000000000001 /* ScreenshotTests.swift */; };
@@ -45,6 +46,7 @@
 		A200000A000000000000000A /* ScreenPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2000000000000000000000B /* ScreenshotDirectoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotDirectoryManager.swift; sourceTree = "<group>"; };
 		A2000000000000000000000C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A2000000000000000000000D /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		B20000010000000000000001 /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
 		B20000020000000000000002 /* ScreenshotDirectoryManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotDirectoryManagerTests.swift; sourceTree = "<group>"; };
 		B20000030000000000000003 /* ScreenshotStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotStoreTests.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000080000000000000008 /* Assets.xcassets */,
+				A2000000000000000000000D /* AppIcon.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000080000000000000008 /* Assets.xcassets in Resources */,
+				A100000B000000000000000B /* AppIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +386,6 @@
 		A90000030000000000000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -410,7 +413,6 @@
 		A90000040000000000000004 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;

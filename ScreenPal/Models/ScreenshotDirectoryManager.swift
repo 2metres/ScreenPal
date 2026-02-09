@@ -11,8 +11,17 @@ class ScreenshotDirectoryManager: ObservableObject {
     @Published var source: DirectorySource
 
     private static let customPathKey = "customScreenshotDirectory"
+    private static let gridColumnsKey = "gridColumns"
+
+    @Published var gridColumns: Int {
+        didSet {
+            UserDefaults.standard.set(gridColumns, forKey: Self.gridColumnsKey)
+        }
+    }
 
     init() {
+        let saved = UserDefaults.standard.integer(forKey: Self.gridColumnsKey)
+        gridColumns = (1...4).contains(saved) ? saved : 3
         if let customPath = UserDefaults.standard.string(forKey: Self.customPathKey) {
             directoryURL = URL(fileURLWithPath: customPath)
             source = .custom

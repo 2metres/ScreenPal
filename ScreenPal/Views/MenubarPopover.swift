@@ -60,6 +60,7 @@ struct MenubarPopover: View {
     @StateObject private var store = ScreenshotStore()
     @State private var showSettings = false
     @State private var keyMonitor: Any?
+    @State private var scrollProxy: ScrollViewProxy?
 
     private let quickLook = QuickLookCoordinator()
 
@@ -80,9 +81,11 @@ struct MenubarPopover: View {
 
                 Divider()
 
-                SettingsView(directoryManager: directoryManager) { newURL in
+                SettingsView(directoryManager: directoryManager, onDirectoryChanged: { newURL in
                     store.updateDirectory(newURL)
-                }
+                }, onTrashAll: {
+                    store.trashAll()
+                })
 
                 Spacer()
             } else {
@@ -111,9 +114,12 @@ struct MenubarPopover: View {
                         Spacer()
                     }
                 } else {
-                    ScrollView {
-                        ScreenshotGrid(screenshots: store.screenshots, thumbnails: store.thumbnails, selectedID: $store.selectedID)
-                            .padding()
+                    ScrollViewReader { proxy in
+                        ScrollView {
+                            ScreenshotGrid(screenshots: store.screenshots, thumbnails: store.thumbnails, selectedID: $store.selectedID, columnCount: directoryManager.gridColumns)
+                                .padding()
+                        }
+                        .onAppear { scrollProxy = proxy }
                     }
 
                     Divider()
@@ -149,7 +155,7 @@ struct MenubarPopover: View {
                 }
 
                 // Arrow keys: navigate selection
-                let columns = 3
+                let columns = directoryManager.gridColumns
                 let delta: Int? = {
                     switch event.keyCode {
                     case 123: return -1         // left
@@ -163,7 +169,9 @@ struct MenubarPopover: View {
                 if let delta = delta, !store.screenshots.isEmpty {
                     let currentIndex = store.screenshots.firstIndex(where: { $0.id == store.selectedID }) ?? -1
                     let newIndex = max(0, min(store.screenshots.count - 1, currentIndex + delta))
-                    store.selectedID = store.screenshots[newIndex].id
+                    let newID = store.screenshots[newIndex].id
+                    store.selectedID = newID
+                    scrollProxy?.scrollTo(newID, anchor: nil)
                     quickLook.updatePreview(url: store.screenshots[newIndex].url)
                     return nil
                 }

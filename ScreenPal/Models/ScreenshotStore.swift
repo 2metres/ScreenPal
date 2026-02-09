@@ -101,6 +101,17 @@ class ScreenshotStore: ObservableObject {
         fileWatcher = nil
     }
 
+    func trashAll() {
+        let fileManager = FileManager.default
+        for screenshot in screenshots {
+            do {
+                try fileManager.trashItem(at: screenshot.url, resultingItemURL: nil)
+            } catch {
+                print("Error trashing \(screenshot.filename): \(error)")
+            }
+        }
+    }
+
     deinit {
         stopWatching()
     }

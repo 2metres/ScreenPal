@@ -76,4 +76,6 @@ Requires macOS 14+ and Xcode 15+.
 
 ## Credits
 
+Inspired by [Shotty](https://meetshotty.com/), a fantastic screenshot manager for macOS. ScreenPal is a free, open-source alternative built as a learning project.
+
 App icon by [bloxxk](https://macosicons.com/#/u/bloxxk) via [macOS Icons](https://macosicons.com).

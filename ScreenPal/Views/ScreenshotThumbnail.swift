@@ -5,45 +5,57 @@ struct ScreenshotThumbnail: View {
     let screenshot: Screenshot
     let thumbnail: NSImage?
     let isSelected: Bool
+    let columnCount: Int
     let onSelect: () -> Void
     @State private var isHovering = false
 
+    private var tileAspectRatio: CGFloat {
+        columnCount == 1 ? 5.0 / 4.0 : 1.0
+    }
+
     var body: some View {
         Group {
-            if let image = thumbnail {
-                Image(nsImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 90, height: 90)
-                    .clipped()
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-            } else {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.gray.opacity(0.2))
-                    .frame(width: 90, height: 90)
-                    .overlay(ProgressView().scaleEffect(0.5))
-            }
+            Color.clear
+                .aspectRatio(tileAspectRatio, contentMode: .fit)
+                .overlay(
+                    Group {
+                        if let image = thumbnail {
+                            Image(nsImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } else {
+                            Color.gray.opacity(0.2)
+                                .overlay(ProgressView().scaleEffect(0.5))
+                        }
+                    }
+                )
+                .clipped()
+                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .overlay(
             Group {
                 if screenshot.isVideo {
-                    ZStack {
-                        Circle()
-                            .fill(.ultraThinMaterial)
-                            .frame(width: 32, height: 32)
-                        Image(systemName: "play.fill")
-                            .font(.system(size: 12))
-                            .foregroundStyle(.white)
-                            .offset(x: 1)
+                    GeometryReader { geo in
+                        let circleSize = geo.size.width * 0.35
+                        ZStack {
+                            Circle()
+                                .fill(.ultraThinMaterial)
+                                .frame(width: circleSize, height: circleSize)
+                            Image(systemName: "play.fill")
+                                .font(.system(size: circleSize * 0.38))
+                                .foregroundStyle(.white)
+                                .offset(x: circleSize * 0.03)
+                        }
+                        .shadow(radius: 3)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
-                    .shadow(radius: 3)
                 }
             },
             alignment: .center
         )
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(isSelected ? Color.accentColor : (isHovering ? Color.accentColor.opacity(0.5) : Color.clear), lineWidth: 2)
+                .stroke(isSelected || isHovering ? Color.accentColor : Color.clear, lineWidth: 4)
         )
         .onHover { hovering in
             isHovering = hovering

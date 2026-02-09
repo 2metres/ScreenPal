@@ -4,12 +4,11 @@ struct ScreenshotGrid: View {
     let screenshots: [Screenshot]
     let thumbnails: [URL: NSImage]
     @Binding var selectedID: UUID?
+    var columnCount: Int = 3
 
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        Array(repeating: GridItem(.flexible()), count: columnCount)
+    }
 
     var body: some View {
         LazyVGrid(columns: columns, spacing: 8) {
@@ -18,8 +17,10 @@ struct ScreenshotGrid: View {
                     screenshot: screenshot,
                     thumbnail: thumbnails[screenshot.url],
                     isSelected: selectedID == screenshot.id,
+                    columnCount: columnCount,
                     onSelect: { selectedID = screenshot.id }
                 )
+                .id(screenshot.id)
             }
         }
     }
