@@ -7,6 +7,20 @@ on:
     branches: [main]
 
 jobs:
+  lint:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Tools
+        run: brew install swiftformat swiftlint
+
+      - name: SwiftFormat Lint
+        run: swiftformat --lint ScreenPal/ ScreenPalTests/
+
+      - name: SwiftLint
+        run: swiftlint lint
+
   test:
     runs-on: macos-15
     steps:

@@ -23,7 +23,6 @@ jobs:
             -scheme ScreenPal \
             -configuration Release \
             -derivedDataPath build
-
       - name: Run Tests
         run: |
           xcodebuild test \
@@ -31,7 +30,6 @@ jobs:
             -scheme ScreenPalTests \
             -configuration Debug \
             -destination 'platform=macOS'
-
       - name: Create DMG
         run: |
           APP_PATH="build/Build/Products/Release/ScreenPal.app"
