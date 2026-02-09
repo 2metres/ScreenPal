@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct ScreenPalApp: App {
+struct ScreenshotPalApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {

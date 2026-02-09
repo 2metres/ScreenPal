@@ -1,6 +1,6 @@
 import XCTest
 import Combine
-@testable import ScreenPal
+@testable import ScreenshotPal
 
 final class ScreenshotStoreTests: XCTestCase {
     private var tempDir: URL!

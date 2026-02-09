@@ -1,6 +1,6 @@
 included:
-  - ScreenPal
-  - ScreenPalTests
+  - ScreenshotPal
+  - ScreenshotPalTests
 
 excluded:
   - .build

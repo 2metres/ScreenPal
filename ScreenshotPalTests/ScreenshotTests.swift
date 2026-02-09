@@ -1,5 +1,5 @@
 import XCTest
-@testable import ScreenPal
+@testable import ScreenshotPal
 
 final class ScreenshotTests: XCTestCase {
     // MARK: - Screenshot Model
